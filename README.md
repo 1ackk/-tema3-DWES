@@ -33,6 +33,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | **9 · Peticiones HTTP y REST** | CRUD completo con las acciones REST (`index`, `show`, `edit`, `update`, `store`, `destroy`), rutas con parámetros, **route model binding**, `findOrFail()` y *method spoofing* con `@method` |
 | **10 · Controladores** | Séptima acción `create`, controlador *resourceful* `IdeaController` generado con Artisan y rutas `[IdeaController::class, 'metodo']` |
 | **11 · Validación de peticiones** | `$request->validate()` con reglas `required` y `min`, variable `$errors`, directiva `@error` y componente reutilizable `<x-forms.error>` |
+| **12 · Clases Form Request** | Clase `IdeaRequest` con `authorize()`, `rules()` y `messages()`, compartida por `store` y `update` |
 
 ## 🗂️ Estructura
 
@@ -41,6 +42,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 └── project/                 # Aplicación Laravel
     ├── routes/web.php       # Rutas de la aplicación
     ├── app/Http/Controllers/IdeaController.php  # Las 7 acciones del recurso Ideas
+    ├── app/Http/Requests/IdeaRequest.php        # Validación al crear y editar ideas
     ├── app/Models/Idea.php  # Modelo Eloquent de las ideas
     ├── database/migrations/ # Estructura de las tablas
     └── resources/views/

@@ -7,7 +7,9 @@
             <label for="description" class="block text-sm/6 font-medium text-white">Edit Your Idea</label>
             <div class="mt-2">
                 <textarea id="description" name="description" rows="3"
-                    class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-none">{{ $idea->description }}</textarea>
+                    class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-none focus:ring-2 focus:ring-indigo-500">{{ $idea->description }}</textarea>
+
+                <x-forms.error name="description" />
             </div>
         </div>
 
