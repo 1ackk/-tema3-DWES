@@ -31,6 +31,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | **7 · Formularios** | Formularios `POST`, protección **CSRF** con `@csrf`, lectura de la *request*, sesión y patrón Post/Redirect/Get |
 | **8 · Bases de datos, migraciones y Eloquent** | SQLite y `.env`, migraciones (`up` / `down`), facade `DB`, modelo **Eloquent** `Idea`, `create()`, `where()` y filtros opcionales con `when()` |
 | **9 · Peticiones HTTP y REST** | CRUD completo con las acciones REST (`index`, `show`, `edit`, `update`, `store`, `destroy`), rutas con parámetros, **route model binding**, `findOrFail()` y *method spoofing* con `@method` |
+| **10 · Controladores** | Séptima acción `create`, controlador *resourceful* `IdeaController` generado con Artisan y rutas `[IdeaController::class, 'metodo']` |
 
 ## 🗂️ Estructura
 
@@ -38,10 +39,11 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 .
 └── project/                 # Aplicación Laravel
     ├── routes/web.php       # Rutas de la aplicación
+    ├── app/Http/Controllers/IdeaController.php  # Las 7 acciones del recurso Ideas
     ├── app/Models/Idea.php  # Modelo Eloquent de las ideas
     ├── database/migrations/ # Estructura de las tablas
     └── resources/views/
-        ├── ideas/           # index, show y edit del recurso Ideas
+        ├── ideas/           # index, create, show y edit del recurso Ideas
         ├── about.blade.php
         ├── contact.blade.php
         └── components/      # layout y card
@@ -69,7 +71,8 @@ Después:
 
 | Método | URI | Qué hace |
 |---|---|---|
-| `GET` | `/ideas` | **index** · Formulario para crear y listado de ideas |
+| `GET` | `/ideas` | **index** · Listado de ideas |
+| `GET` | `/ideas/create` | **create** · Formulario para crear una idea |
 | `POST` | `/ideas` | **store** · Guarda una idea nueva |
 | `GET` | `/ideas/{idea}` | **show** · Muestra una idea |
 | `GET` | `/ideas/{idea}/edit` | **edit** · Formulario de edición |
