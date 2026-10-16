@@ -3,11 +3,19 @@
         @csrf
 
         <div class="col-span-full">
-            <label for="description" class="block text-sm/6 font-medium text-white">New Idea</label>
+            <label for="description" class="block text-sm/6 font-medium text-white">Create New Idea</label>
+
             <div class="mt-2">
-                <textarea id="description" name="description" rows="3"
-                    class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="3"
+                    class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-none focus:ring-2 focus:ring-indigo-500"
+                ></textarea>
+
+                <x-forms.error name="description" />
             </div>
+
             <p class="mt-3 text-sm/6 text-gray-400">Have an idea you want to save for later?</p>
         </div>
 

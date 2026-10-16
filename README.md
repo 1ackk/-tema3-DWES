@@ -32,6 +32,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | **8 · Bases de datos, migraciones y Eloquent** | SQLite y `.env`, migraciones (`up` / `down`), facade `DB`, modelo **Eloquent** `Idea`, `create()`, `where()` y filtros opcionales con `when()` |
 | **9 · Peticiones HTTP y REST** | CRUD completo con las acciones REST (`index`, `show`, `edit`, `update`, `store`, `destroy`), rutas con parámetros, **route model binding**, `findOrFail()` y *method spoofing* con `@method` |
 | **10 · Controladores** | Séptima acción `create`, controlador *resourceful* `IdeaController` generado con Artisan y rutas `[IdeaController::class, 'metodo']` |
+| **11 · Validación de peticiones** | `$request->validate()` con reglas `required` y `min`, variable `$errors`, directiva `@error` y componente reutilizable `<x-forms.error>` |
 
 ## 🗂️ Estructura
 
@@ -46,7 +47,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
         ├── ideas/           # index, create, show y edit del recurso Ideas
         ├── about.blade.php
         ├── contact.blade.php
-        └── components/      # layout y card
+        └── components/      # layout, card y forms/error
 ```
 
 ## 🚀 Cómo ejecutarlo en local
