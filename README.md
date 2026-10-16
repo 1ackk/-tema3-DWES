@@ -29,6 +29,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | **5 · Pasar datos a las vistas** | Arrays de datos hacia la vista, lectura del *query string* con `request()`, escape automático con `{{ }}` frente a `{!! !!}` |
 | **6 · Directivas de Blade** | `@dump`, `@dd`, `@if`, `@unless`, `@foreach` y `@forelse` / `@empty` |
 | **7 · Formularios** | Formularios `POST`, protección **CSRF** con `@csrf`, lectura de la *request*, sesión y patrón Post/Redirect/Get |
+| **8 · Bases de datos, migraciones y Eloquent** | SQLite y `.env`, migraciones (`up` / `down`), facade `DB`, modelo **Eloquent** `Idea`, `create()`, `where()` y filtros opcionales con `when()` |
 
 ## 🗂️ Estructura
 
@@ -36,6 +37,8 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 .
 └── project/                 # Aplicación Laravel
     ├── routes/web.php       # Rutas de la aplicación
+    ├── app/Models/Idea.php  # Modelo Eloquent de las ideas
+    ├── database/migrations/ # Estructura de las tablas
     └── resources/views/
         ├── ideas.blade.php  # Formulario y listado de ideas
         ├── about.blade.php
@@ -53,6 +56,7 @@ composer install
 npm install
 cp .env.example .env
 php artisan key:generate
+php artisan migrate
 ```
 
 Después:
@@ -64,13 +68,12 @@ Después:
 
 | Método | URI | Qué hace |
 |---|---|---|
-| `GET` | `/` | Muestra el formulario y las ideas guardadas en la sesión |
-| `POST` | `/ideas` | Guarda una idea nueva en la sesión y redirige a `/` |
-| `GET` | `/delete-ideas` | *(Temporal)* Borra todas las ideas de la sesión |
+| `GET` | `/` | Muestra el formulario y las ideas guardadas. Admite el filtro `?state=pending` |
+| `POST` | `/ideas` | Guarda una idea nueva en la base de datos y redirige a `/` |
 | `GET` | `/about` | Página "About Us" |
 | `GET` | `/contact` | Página "Contact Us" |
 
-> ℹ️ Por ahora las ideas se guardan en la **sesión** del navegador, así que solo duran mientras dura la sesión. Más adelante se guardarán en una base de datos.
+> ℹ️ Las ideas se guardan en una base de datos **SQLite** (`database/database.sqlite`). Antes de abrir la aplicación por primera vez, crea las tablas con `php artisan migrate`.
 
 ---
 

@@ -1,9 +1,14 @@
 <?php
 
+use App\Models\Idea;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $ideas = session()->get('ideas', []);
+    $ideas = Idea::query()
+        ->when(request('state'), function ($query, $state) {
+            $query->where('state', $state);
+        })
+        ->get();
 
     return view('ideas', [
         'ideas' => $ideas,
@@ -11,16 +16,10 @@ Route::get('/', function () {
 });
 
 Route::post('/ideas', function () {
-    $idea = request('idea');
-
-    session()->push('ideas', $idea);
-
-    return redirect('/');
-});
-
-// Temporary
-Route::get('/delete-ideas', function () {
-    session()->forget('ideas');
+    Idea::create([
+        'description' => request('idea'),
+        'state' => 'pending',
+    ]);
 
     return redirect('/');
 });
