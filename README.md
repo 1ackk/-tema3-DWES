@@ -8,6 +8,7 @@
 ![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel&logoColor=white)
 ![Blade](https://img.shields.io/badge/Blade-plantillas-F05340?logo=laravel&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![DaisyUI](https://img.shields.io/badge/DaisyUI-5-5A0EF8?logo=daisyui&logoColor=white)
 ![Laravel Herd](https://img.shields.io/badge/Laravel_Herd-entorno_local-F53003?logo=laravel&logoColor=white)
 
 </div>
@@ -34,6 +35,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | **10 · Controladores** | Séptima acción `create`, controlador *resourceful* `IdeaController` generado con Artisan y rutas `[IdeaController::class, 'metodo']` |
 | **11 · Validación de peticiones** | `$request->validate()` con reglas `required` y `min`, variable `$errors`, directiva `@error` y componente reutilizable `<x-forms.error>` |
 | **12 · Clases Form Request** | Clase `IdeaRequest` con `authorize()`, `rules()` y `messages()`, compartida por `store` y `update` |
+| **13 · Desvío con DaisyUI** | Componentes de **DaisyUI** por CDN, temas con `data-theme`, barra de navegación `<x-nav>`, tarjetas `<x-idea-card>` y estados de error en formularios |
 
 ## 🗂️ Estructura
 
@@ -49,7 +51,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
         ├── ideas/           # index, create, show y edit del recurso Ideas
         ├── about.blade.php
         ├── contact.blade.php
-        └── components/      # layout, card y forms/error
+        └── components/      # layout, nav, idea-card, card y forms/error
 ```
 
 ## 🚀 Cómo ejecutarlo en local
