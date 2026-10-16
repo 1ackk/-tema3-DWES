@@ -30,6 +30,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | **6 · Directivas de Blade** | `@dump`, `@dd`, `@if`, `@unless`, `@foreach` y `@forelse` / `@empty` |
 | **7 · Formularios** | Formularios `POST`, protección **CSRF** con `@csrf`, lectura de la *request*, sesión y patrón Post/Redirect/Get |
 | **8 · Bases de datos, migraciones y Eloquent** | SQLite y `.env`, migraciones (`up` / `down`), facade `DB`, modelo **Eloquent** `Idea`, `create()`, `where()` y filtros opcionales con `when()` |
+| **9 · Peticiones HTTP y REST** | CRUD completo con las acciones REST (`index`, `show`, `edit`, `update`, `store`, `destroy`), rutas con parámetros, **route model binding**, `findOrFail()` y *method spoofing* con `@method` |
 
 ## 🗂️ Estructura
 
@@ -40,7 +41,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
     ├── app/Models/Idea.php  # Modelo Eloquent de las ideas
     ├── database/migrations/ # Estructura de las tablas
     └── resources/views/
-        ├── ideas.blade.php  # Formulario y listado de ideas
+        ├── ideas/           # index, show y edit del recurso Ideas
         ├── about.blade.php
         ├── contact.blade.php
         └── components/      # layout y card
@@ -61,15 +62,19 @@ php artisan migrate
 
 Después:
 
-- **Con Laravel Herd:** enlaza la carpeta `project` y abre `http://project.test`.
-- **Sin Herd:** ejecuta `php artisan serve` y abre `http://localhost:8000`.
+- **Con Laravel Herd:** enlaza la carpeta `project` y abre `http://project.test/ideas`.
+- **Sin Herd:** ejecuta `php artisan serve` y abre `http://localhost:8000/ideas`.
 
 ## 🧭 Rutas disponibles
 
 | Método | URI | Qué hace |
 |---|---|---|
-| `GET` | `/` | Muestra el formulario y las ideas guardadas. Admite el filtro `?state=pending` |
-| `POST` | `/ideas` | Guarda una idea nueva en la base de datos y redirige a `/` |
+| `GET` | `/ideas` | **index** · Formulario para crear y listado de ideas |
+| `POST` | `/ideas` | **store** · Guarda una idea nueva |
+| `GET` | `/ideas/{idea}` | **show** · Muestra una idea |
+| `GET` | `/ideas/{idea}/edit` | **edit** · Formulario de edición |
+| `PATCH` | `/ideas/{idea}` | **update** · Guarda los cambios de una idea |
+| `DELETE` | `/ideas/{idea}` | **destroy** · Borra una idea |
 | `GET` | `/about` | Página "About Us" |
 | `GET` | `/contact` | Página "Contact Us" |
 
