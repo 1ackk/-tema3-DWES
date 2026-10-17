@@ -23,6 +23,8 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 
 ## ✨ Qué se ha visto hasta ahora
 
+### 🧱 Los fundamentos (apartados 1-13)
+
 | Apartado | Contenido |
 |---|---|
 | **Vistas y rutas** | Rutas con `Route::view` y `Route::get`, vistas Blade para Home, About y Contact |
@@ -37,6 +39,12 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | **12 · Clases Form Request** | Clase `IdeaRequest` con `authorize()`, `rules()` y `messages()`, compartida por `store` y `update` |
 | **13 · Desvío con DaisyUI** | Componentes de **DaisyUI** por CDN, temas con `data-theme`, barra de navegación `<x-nav>`, tarjetas `<x-idea-card>` y estados de error en formularios |
 
+### 🔐 Autenticación (desde el apartado 14)
+
+| Apartado | Contenido |
+|---|---|
+| **14 · Autenticación** | Registro con `RegisteredUserController` (validación `unique` y `Password::defaults()`, contraseña con `Hash::make`, `Auth::login`), login y logout con `SessionsController` (`Auth::attempt`, regeneración de sesión, `Auth::logout`) y menú con `@guest` / `@auth` |
+
 ## 🗂️ Estructura
 
 ```
@@ -44,11 +52,13 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 └── project/                 # Aplicación Laravel
     ├── routes/web.php       # Rutas de la aplicación
     ├── app/Http/Controllers/IdeaController.php  # Las 7 acciones del recurso Ideas
+    ├── app/Http/Controllers/Auth/               # Registro, login y logout
     ├── app/Http/Requests/IdeaRequest.php        # Validación al crear y editar ideas
     ├── app/Models/Idea.php  # Modelo Eloquent de las ideas
     ├── database/migrations/ # Estructura de las tablas
     └── resources/views/
         ├── ideas/           # index, create, show y edit del recurso Ideas
+        ├── auth/            # Formularios de registro y login
         ├── about.blade.php
         ├── contact.blade.php
         └── components/      # layout, nav, idea-card, card y forms/error
@@ -83,6 +93,11 @@ Después:
 | `GET` | `/ideas/{idea}/edit` | **edit** · Formulario de edición |
 | `PATCH` | `/ideas/{idea}` | **update** · Guarda los cambios de una idea |
 | `DELETE` | `/ideas/{idea}` | **destroy** · Borra una idea |
+| `GET` | `/register` | Formulario de registro |
+| `POST` | `/register` | Crea la cuenta e inicia la sesión |
+| `GET` | `/login` | Formulario de login |
+| `POST` | `/login` | Inicia la sesión |
+| `DELETE` | `/logout` | Cierra la sesión |
 | `GET` | `/about` | Página "About Us" |
 | `GET` | `/contact` | Página "Contact Us" |
 
