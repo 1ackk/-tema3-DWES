@@ -47,6 +47,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | **15 · Middleware de autenticación** | Clave foránea `user_id` con `foreignIdFor()->constrained()->cascadeOnDelete()`, grupos de rutas con middleware `auth` y `guest`, ruta con nombre `login`, `Auth::id()` y cada usuario ve solo sus ideas |
 | **16 · Relaciones Eloquent** | Relación uno a muchos `User` *hasMany* `Idea` / `Idea` *belongsTo* `User`, diferencia entre propiedad (`->ideas`) y método (`->ideas()`), y crear ideas a través de la relación |
 | **17 · Autorización con Gates** | Gate `view-admin` en `AppServiceProvider`, columna `role` y método `isAdmin()`, enlace con `@can` y ruta `/admin` protegida con `->can()` |
+| **18 · Autorización con Policies** | `IdeaPolicy` con la capacidad `update` (`$user->is($idea->user)`) y `Gate::authorize()` en `show`, `edit`, `update` y `destroy`: nadie puede ver ni modificar ideas ajenas |
 
 ## 🗂️ Estructura
 
@@ -57,6 +58,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
     ├── app/Http/Controllers/IdeaController.php  # Las 7 acciones del recurso Ideas
     ├── app/Http/Controllers/Auth/               # Registro, login y logout
     ├── app/Http/Requests/IdeaRequest.php        # Validación al crear y editar ideas
+    ├── app/Policies/IdeaPolicy.php              # Solo el dueño puede ver o modificar una idea
     ├── app/Models/Idea.php  # Modelo Eloquent de las ideas
     ├── database/migrations/ # Estructura de las tablas
     └── resources/views/
@@ -105,7 +107,7 @@ Después:
 | `GET` | `/about` | Página "About Us" |
 | `GET` | `/contact` | Página "Contact Us" |
 
-> 🔒 Las rutas de ideas y `/logout` requieren **haber iniciado sesión** (middleware `auth`); `/register` y `/login` son solo para **invitados** (middleware `guest`). Cada usuario ve únicamente sus propias ideas.
+> 🔒 Las rutas de ideas y `/logout` requieren **haber iniciado sesión** (middleware `auth`); `/register` y `/login` son solo para **invitados** (middleware `guest`). Cada usuario ve únicamente sus propias ideas, y la policy `IdeaPolicy` impide ver, editar o borrar las de otros (403).
 
 > ℹ️ Las ideas se guardan en una base de datos **SQLite** (`database/database.sqlite`). Antes de abrir la aplicación por primera vez, crea las tablas con `php artisan migrate`.
 
