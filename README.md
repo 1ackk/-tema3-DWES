@@ -44,6 +44,7 @@ Cada commit corresponde a un apartado del temario, así que el historial del rep
 | Apartado | Contenido |
 |---|---|
 | **14 · Autenticación** | Registro con `RegisteredUserController` (validación `unique` y `Password::defaults()`, contraseña con `Hash::make`, `Auth::login`), login y logout con `SessionsController` (`Auth::attempt`, regeneración de sesión, `Auth::logout`) y menú con `@guest` / `@auth` |
+| **15 · Middleware de autenticación** | Clave foránea `user_id` con `foreignIdFor()->constrained()->cascadeOnDelete()`, grupos de rutas con middleware `auth` y `guest`, ruta con nombre `login`, `Auth::id()` y cada usuario ve solo sus ideas |
 
 ## 🗂️ Estructura
 
@@ -100,6 +101,8 @@ Después:
 | `DELETE` | `/logout` | Cierra la sesión |
 | `GET` | `/about` | Página "About Us" |
 | `GET` | `/contact` | Página "Contact Us" |
+
+> 🔒 Las rutas de ideas y `/logout` requieren **haber iniciado sesión** (middleware `auth`); `/register` y `/login` son solo para **invitados** (middleware `guest`). Cada usuario ve únicamente sus propias ideas.
 
 > ℹ️ Las ideas se guardan en una base de datos **SQLite** (`database/database.sqlite`). Antes de abrir la aplicación por primera vez, crea las tablas con `php artisan migrate`.
 
