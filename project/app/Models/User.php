@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
  * @property string $email
  * @property Carbon|null $email_verified_at
  * @property string $password
+ * @property string $role
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -48,6 +49,11 @@ class User extends Authenticatable
     public function ideas(): HasMany
     {
         return $this->hasMany(Idea::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
     }
 
     /**

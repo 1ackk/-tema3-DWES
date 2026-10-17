@@ -15,6 +15,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/ideas/{idea}', [IdeaController::class, 'destroy']);
 
     Route::delete('/logout', [SessionsController::class, 'destroy']);
+
+    Route::get('/admin', function () {
+        return 'Private admin only area';
+    })->can('view-admin');
 });
 
 Route::middleware('guest')->group(function () {
